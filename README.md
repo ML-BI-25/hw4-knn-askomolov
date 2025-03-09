@@ -1,4 +1,8 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/bn6_rP4t)
 # ДЗ 4. Метод K-ближайших соседей.
+
+**Комолов Александр**
+
 
 В этой домашке есть вам предстоит реализовать свой KNN, а также поиграться с подбором параметров. В домашке две части, но они обе находятся в одном ноутбуке. 
 
