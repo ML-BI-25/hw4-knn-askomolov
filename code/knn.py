@@ -47,11 +47,11 @@ class KNNClassifier:
         distances, np array (num_test_samples, num_train_samples) - array
            with distances between each test and each train sample
         """
-        
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        dist_matr = np.zeros((X.shape[0], self.train_X.shape[0]))
+        for i in range(self.train_X.shape[0]):
+            for j in range(X.shape[0]):
+                dist_matr[j][i] = np.sum(np.abs(self.train_X[i] - X[j]))
+        return dist_matr
 
 
     def predict_labels_binary(self, distances):
@@ -70,10 +70,11 @@ class KNNClassifier:
         n_test = distances.shape[0]
         prediction = np.zeros(n_test)
 
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        for i in range(n_test):
+            k_nearest_indexes = np.argsort(distances[i])[:self.k]
+            targets = self.train_y[k_nearest_indexes]
+            prediction[i] = np.bincount(targets).argmax()
+        return prediction
 
 
     def predict_labels_multiclass(self, distances):
@@ -90,9 +91,10 @@ class KNNClassifier:
 
         n_train = distances.shape[0]
         n_test = distances.shape[0]
-        prediction = np.zeros(n_test, np.int)
-
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        prediction = np.zeros(n_test, dtype = 'int64')
+        for i in range(n_test):
+            k_nearest_indexes = np.argsort(distances[i])[:self.k]
+            targets = self.train_y[k_nearest_indexes]
+            a, b = np.unique(targets, return_counts=True)
+            prediction[i] = a[b.argmax()]
+        return prediction
